@@ -66,7 +66,7 @@ export default function SkinCarePreguntas() {
             {preguntas[preguntaActual]}
           </Text>
           <TextInput
-            style={{ height: 40, margin: 12, padding: 22 , width:'50%',fontStyle:'normal' }}
+            style={{ height: 40, margin: 12, padding: 10 , width:'50%',fontStyle:'normal', fontSize: 20, textAlign: 'center', color: 'red', borderWidth: 1, borderColor: 'black'}}
             placeholder="Escribe tu respuesta"
             onChangeText={ (text) => setRespuestas(text)}
               value={respuestas}
@@ -87,26 +87,26 @@ export default function SkinCarePreguntas() {
             alignSelf: "center",
             width: "100%",
             height: 'auto',
-            marginTop: 33,
+            marginTop: 133,
           }}
         >
            
-      <Text
-        style={{
-          fontSize: 22,
-          textAlign: "center",
-          fontFamily: "sans-serif", // robo mono
-          fontWeight: "400",
-          width: "90%",
-          marginTop: 129,
-        }}
-      
-      >¡Gracias por responder todas las preguntas!</Text>;
+          <Text
+            style={{
+              fontSize: 23,
+              fontStyle: "italic",
+              textAlign: "center",
+              fontFamily: "sans-serif", // robo mono
+              fontWeight: "bold",
+              width: "90%",
+              marginBottom: 20,
+            }}
+          >
+            ¡Gracias por responder las preguntas! Ahora puedes ver los resultados.
+          </Text>
 
       <Button title="Ver resultados"
-      onPress={(
-        goPageAnalytic
-      )} 
+      onPress={goPageAnalytic}
       />
 
       </View>
@@ -150,7 +150,7 @@ export default function SkinCarePreguntas() {
           fontWeight: "400",
           width: "80%",
           marginBottom: 20,
-          marginTop: 100,
+          marginTop: 40,
           color: 'black',
         }}
       >
