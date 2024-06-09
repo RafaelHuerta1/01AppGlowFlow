@@ -1,22 +1,59 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { Stack } from "expo-router";
-/** recibe txt y ruta hacia donde se dirigira  */
+import React, {useState} from 'react';
+import {Alert, Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { Link, Stack, router } from "expo-router";
 
 
-/** 
- * 1. Responder preguntas para tener una mayor informacion y que el analisis sea mas preciso
- * 2. Solo ir a la seccion de subir foto.
-*/
+const manerasNav = ['Preguntas', 'Reconocimiento Facial']
 
-export default function ModalInfo(){
-        return(
-            <View>
 
-    <Stack.Screen
+
+
+
+const createBtnToucha = () => {
+    return manerasNav.map((item, index) => {
+        return (
+            <TouchableOpacity
+                key={index}
+                style={{
+                    backgroundColor: '#f9c2ff',
+                    padding: 12,
+                    margin: 5,
+                    borderRadius: 10,
+                    width: 'auto',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    
+                
+                }}
+                onPress={() => {
+                    item === 'Preguntas' ? router.push('/informacion/skinCarePreguntas') : router.push('/screens/skincare')
+                }}
+            >
+                <Text
+                style={{
+                    fontSize: 15,
+                    textAlign: 'center',
+                    fontFamily: 'sans-serif',
+                    fontWeight: 'bold',
+                }}
+                >{item}</Text>
+            </TouchableOpacity>
+        );
+    });
+}
+
+
+
+
+const ModalInfo = () => {
+  return (
+    <View style={{  justifyContent: 'center', alignContent: 'center' , width: '100%', height: '100%' , alignItems: 'center'}}>
+      
+      
+      <Stack.Screen
         options={{
-          title: "Elije la forma de comenzar",
-          headerStyle: { backgroundColor: "#f4511e" },
+          title: "Skin Care - Preguntas o Reconocimiento Facial",
+          headerStyle: { backgroundColor: '#0500FD' },
           headerTintColor: "#fff",
           headerTitleStyle: {
             fontWeight: "bold",
@@ -26,32 +63,81 @@ export default function ModalInfo(){
         }}
       />
 
-            <View
+      <View
+        style={{
+              position: 'absolute',
+              top: 0,
+              marginTop: 30,
+              alignItems: 'center',
+              width: '90%',
+              backgroundColor: '#f9c2ff',
+              padding: 10,
+              borderTopRightRadius: 30, // Aplica un borde redondeado en el top derecho
+            borderBottomLeftRadius: 30, // Aplica un borde redondeado en el bottom izquierdo
+        }}
+        >
+
+        <Text
             style={{
-                justifyContent: "center",
-                alignItems: "center",
-                width: '100%',
-                height: '100%',
+            fontSize: 22,
+            textAlign: "justify",
+            marginTop: 0,
+            width: '80%',
+            marginBottom: 20,
+            fontFamily: "sans-serif", // robo mono
             }}
-            >
-                <Text
-                style={{marginBottom: 20, fontSize:22, textAlign: "center", fontFamily: "sans-serif", fontWeight: "400", width:'80%'}}
-                >Como te gustaria hacer el analisis facial.</Text>
+        >
+          Te suguerimos no saltar el paso de las preguntas, es importante para  obtener un analisis mas preciso y personalizado.
 
-                <View
-                style={{width: '80%', justifyContent: "space-around", alignItems: "center", flexDirection: "row"}}
-                >
-                        <TouchableOpacity>
-                            <Text>Responder preguntas</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text>Subir foto</Text>
-                        </TouchableOpacity>
+        </Text>
 
-                 </View>
-
-            </View>
         </View>
 
-        )
-}
+
+
+      <View
+        style={{
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: 'row',
+            width: '80%',
+        }}
+        >
+
+
+   
+
+
+            <Text
+            style={{
+            fontSize: 20,
+            textAlign: "center",
+
+            marginTop: 0,
+            width: '80%',
+            marginBottom: 20,
+            fontFamily: "sans-serif", // robo mono
+            }}
+        >
+          De que manera le gustaria hacer el analisis?
+        </Text>
+        </View>
+      
+        <View
+        style={{
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: 'row',
+            width: '80%',
+        }}
+        >
+          {createBtnToucha()}
+
+      </View>
+        
+    </View>
+  );
+};
+
+
+export default ModalInfo;

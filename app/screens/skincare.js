@@ -73,13 +73,14 @@ function Skincare() {
         <View
         style={{
             marginTop: 150,
-           
+           width: '90%',
         }}
         >
             <ButtonTabInformativo
                 text="Subir foto"
                 color="red"
                 fc='/screens/resultados'
+                
             />
                 </View>
         

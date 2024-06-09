@@ -70,7 +70,7 @@ function Index( ) {
               marginTop: 40,
             }}
             >
-               <ButtonTabInformativo  text="Skin Care" color='#0500FD' nameIcono='heart'  fc='/informacion/skinCarePreguntas'  /> 
+               <ButtonTabInformativo  text="Skin Care" color='#0500FD' nameIcono='heart'  fc='/componentes/ModalInfo'  /> 
                <ButtonTabInformativo  text="Gym + Dieta" color='#34A853' nameIcono='fitness'    fc='/gym'  />
                <ButtonTabInformativo  text="Ambos" color='#C0C0C0' nameIcono='happy'  fc='/ambos'  />
 

@@ -9,6 +9,7 @@ function ButtonTabInformativo(props) {
 
   const router = useRouter()
 
+  const  resultBorder = props.borderS ? '2px solid red' : 'none'
 
 
 
@@ -45,6 +46,7 @@ function ButtonTabInformativo(props) {
                 minHeight: 60,
                 maxHeight: 80,
                 height: 'auto',
+                borderBlockColor: resultBorder,
                 
             }}
             >

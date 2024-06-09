@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Button, ScrollView, TextInput } from "react-native";
+import { View, Text, Button, ScrollView, TextInput, TouchableOpacity } from "react-native";
 import { Link, Stack, router } from "expo-router";
 import ButtonTabInformativo from '../componentes/ButtonTabInformativo'
+
 const preguntas = [
+  '¿Cual es su nombre completo?',
   "¿Cuál es tu género?",
   "¿Cuál es tu edad?",
   "¿Tienes sensibilidad a algún producto o ingrediente específico?",
@@ -15,6 +17,76 @@ const preguntas = [
   "¿Tienes alguna preferencia en los productos de cuidado facial?",
   "¿Cuál es tu presupuesto para skin care?",
 ];
+
+
+/***
+ * POSIBLES RESPUESTAS:
+ * ¿Cuál es tu género?
+
+Masculino
+Femenino
+Prefiero no decirlo
+¿Cuál es tu edad?
+
+Menor de 20 años
+20-40 años
+Mayor de 40 años
+¿Tienes sensibilidad a algún producto o ingrediente específico?
+
+Sí
+No
+No estoy seguro/a
+¿Con qué frecuencia y cuánto tiempo estás expuesto al sol?
+
+Raramente (Menos de 1 hora al día)
+Moderadamente (1-3 horas al día)
+Frecuentemente (Más de 3 horas al día)
+¿Usas protector solar regularmente?
+
+Sí
+No
+A veces
+¿Qué tipo de dieta sigues?
+
+Equilibrada
+Vegetariana/Vegana
+Alta en carbohidratos o grasas
+¿Con qué frecuencia haces ejercicio?
+
+Diariamente
+Varias veces a la semana
+Raramente o nunca
+¿Cuántas horas duermes al día?
+
+Menos de 6 horas
+6-8 horas
+Más de 8 horas
+¿Fumas o consumes alcohol?
+
+Ambos
+Solo uno de ellos
+Ninguno
+¿Tienes alguna preferencia en los productos de cuidado facial?
+
+Productos naturales/orgánicos
+Productos de alta gama o de marca
+No tengo preferencias específicas
+¿Cuál es tu presupuesto para skin care?
+
+Económico bajo: Menos de $20 mensuales
+Económico medio: $20-$50 mensuales
+Económico alto: Más de $50 mensuales
+ */
+
+
+
+const createBtnOpcion = () => {
+    
+}
+
+
+
+
 
 export default function SkinCarePreguntas() {
   const [respuestas, setRespuestas] = useState([]);
@@ -51,7 +123,7 @@ export default function SkinCarePreguntas() {
             alignSelf: "center",
             width: "100%",
             height: 'auto',
-            marginTop: 33,
+            marginTop: 133,
           }}
         >
           <Text
@@ -66,12 +138,21 @@ export default function SkinCarePreguntas() {
           >
             {preguntas[preguntaActual]}
           </Text>
-          <TextInput
+          {
+            preguntaActual === 0 ? (
+              <TextInput
             style={{ height: 40, margin: 12, padding: 0 , width:'80%',fontStyle:'normal', fontSize: 20, textAlign: 'center', color: 'red', borderWidth: 1, borderColor: 'grey', borderRadius: 10, backgroundColor: 'white'}}
             placeholder="Escribe tu respuesta"
             onChangeText={ (text) => setRespuestas(text)}
               value={respuestas}
           />
+            ) : 
+           
+            createBtnOpcion()
+              
+
+
+          }
           <Button title="Siguiente" 
           onPress={cambiarPregunta}
           />
@@ -106,9 +187,8 @@ export default function SkinCarePreguntas() {
             ¡Gracias por responder las preguntas! Ahora pasaremos al analisis facil.
           </Text>
 
-      <Button title="Ver resultados"
-      onPress={goPageAnalytic}
-      />
+
+      
 
       </View>
 
@@ -144,37 +224,25 @@ export default function SkinCarePreguntas() {
         }}
       />
 
-      <Text
-        style={{
-          fontSize: 25,
-          textAlign: "center",
-          fontFamily: "sans-serif", // robo mono
-          fontWeight: "400",
-          width: "90%",
-          marginBottom: 20,
-          marginTop: 40,
-          color: 'black',
-        }}
-      >
-        NO ES NECESARIA {'\n'} PERO AYUDA A PERSONALIZAR TU RUTINA : {'\n'}
-        Responde de la mejor manera posible las siguientes preguntas para poder
-        personalizar aun mas tu rutina de skin care, y obtener mejores resultados.
-      </Text>
 
       {preguntasLayout()}
 
       <View
         style={{
-          marginTop: 120,
-
+          marginTop: 620,
+          width: "90%",
+          height: "auto",
+          position: "absolute",
+        top: 0,
 
         }}
       >
 
         <ButtonTabInformativo
-          text="Omitir preguntas, ir al analisis facial  con IA"
+          text="Ir al analisis facial  con IA"
           fc='/screens/skincare'
-          color="grey"
+          color="red"
+          borderS={true}
         />
 
       </View>
