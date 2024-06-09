@@ -81,9 +81,8 @@ Económico alto: Más de $50 mensuales
 
 
 const createBtnOpcion = () => {
-    
-}
 
+}
 
 
 
@@ -92,7 +91,15 @@ export default function SkinCarePreguntas() {
   const [respuestas, setRespuestas] = useState([]);
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [respuestasCompletas, setRespuestasCompletas] = useState([]);
-  const num = 1;
+
+  const [cambiarTextBtn, setCambiarTextBtn] = useState("Omitir Preguntas");
+
+  useEffect(() => {
+    if (preguntaActual === preguntas.length) {
+      setCambiarTextBtn("Ir Al Analisis Facil");
+    }
+  }, [preguntaActual]);
+
 
   const goPageAnalytic = () => {
     console.log(respuestasCompletas);
@@ -123,7 +130,7 @@ export default function SkinCarePreguntas() {
             alignSelf: "center",
             width: "100%",
             height: 'auto',
-            marginTop: 133,
+            marginTop: 333,
           }}
         >
           <Text
@@ -169,7 +176,7 @@ export default function SkinCarePreguntas() {
             alignSelf: "center",
             width: "100%",
             height: 'auto',
-            marginTop: 133,
+            marginTop: 333,
           }}
         >
            
@@ -181,7 +188,7 @@ export default function SkinCarePreguntas() {
               fontFamily: "sans-serif", // robo mono
               fontWeight: "bold",
               width: "90%",
-              marginBottom: 20,
+              marginBottom: 0,
             }}
           >
             ¡Gracias por responder las preguntas! Ahora pasaremos al analisis facil.
@@ -214,7 +221,7 @@ export default function SkinCarePreguntas() {
       <Stack.Screen
         options={{
           title: "Skin Care -  Preguntas",
-          headerStyle: { backgroundColor: "#f4511e" },
+          headerStyle: { backgroundColor: '#0500FD' },
           headerTintColor: "#fff",
           headerTitleStyle: {
             fontWeight: "bold",
@@ -224,7 +231,36 @@ export default function SkinCarePreguntas() {
         }}
       />
 
+<View
+        style={{
+              position: 'absolute',
+              top: 0,
+              marginTop: 30,
+              alignItems: 'center',
+              width: '90%',
+              backgroundColor: 'white',
+              padding: 10,
+            //  borderColor: 'black',
+              borderTopRightRadius: 30, // Aplica un borde redondeado en el top derecho
+            borderBottomLeftRadius: 30, // Aplica un borde redondeado en el bottom izquierdo
+        }}
+        >
 
+        <Text
+            style={{
+            fontSize: 22,
+            textAlign: "justify",
+            marginTop: 0,
+            width: '80%',
+            marginBottom: 20,
+            fontFamily: "sans-serif", // robo mono
+            }}
+        >
+          Te suguerimos no saltar el paso de las preguntas, es importante para  obtener un analisis mas preciso y personalizado.
+
+        </Text>
+
+        </View>
       {preguntasLayout()}
 
       <View
@@ -239,7 +275,7 @@ export default function SkinCarePreguntas() {
       >
 
         <ButtonTabInformativo
-          text="Ir al analisis facial  con IA"
+          text={cambiarTextBtn}
           fc='/screens/skincare'
           color="red"
           borderS={true}
