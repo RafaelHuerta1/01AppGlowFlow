@@ -1,4 +1,4 @@
-import React from "react";
+import React ,  {useState} from "react";
 import { View, Text, Button , Image} from "react-native";
 //import { registerRootComponent } from 'expo';
 import { Link, Stack } from 'expo-router';
@@ -6,10 +6,13 @@ import { useLocalSearchParams } from "expo-router";
 import ButtonTabInformativo from "../componentes/ButtonTabInformativo";
 
 
+const imgUno = require("../assets/imgFondo.png");
+
+
 function Skincare() {
 
-    const { respuestasCompletas } = useLocalSearchParams();
-    console.log(respuestasCompletas, '- 1');
+    const [imageDefaultCamara, setImageDefaultCamara] = useState(imgUno);	
+
 
 
     return (
@@ -51,13 +54,14 @@ function Skincare() {
                 height:400,
                 borderRadius: 100,
                 backgroundColor: "#fff",
+                marginTop: 10,
             }}
         >
 
-            <Image source={require("../assets/imgPruebaFondo.jpg")} 
+            <Image source={imageDefaultCamara} 
             style={{
                 width: '100%',
-                height:'100%',
+                height:500,
                 borderRadius: 100,
                 backgroundColor: "#fff",
                // marginTop: 100,
@@ -75,7 +79,7 @@ function Skincare() {
             <ButtonTabInformativo
                 text="Subir foto"
                 color="red"
-                goPage={() => console.log('Subir foto')}
+                fc='/screens/resultados'
             />
                 </View>
         

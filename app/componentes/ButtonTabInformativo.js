@@ -5,7 +5,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 
 function ButtonTabInformativo(props) {
-  console.log(props.fc)
+  console.log('/',props.fc)
+
   const router = useRouter()
 
 
@@ -22,6 +23,7 @@ function ButtonTabInformativo(props) {
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
+          alignContent: 'center',
           marginTop: 40,
           minHeight: 60,
           maxHeight: 80,
@@ -38,6 +40,7 @@ function ButtonTabInformativo(props) {
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
+                alignContent: 'center',
                 width: '90%',
                 minHeight: 60,
                 maxHeight: 80,
@@ -52,9 +55,7 @@ function ButtonTabInformativo(props) {
             justifyContent: 'space-evenly',
             alignItems: 'center',
             width: '100%',
-            //wheight: 100,
-
-
+            justifyContent: 'center',
             }}
          
         >
