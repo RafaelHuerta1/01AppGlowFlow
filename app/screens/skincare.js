@@ -3,12 +3,13 @@ import { View, Text, Button , Image} from "react-native";
 //import { registerRootComponent } from 'expo';
 import { Link, Stack } from 'expo-router';
 import { useLocalSearchParams } from "expo-router";
+import ButtonTabInformativo from "../componentes/ButtonTabInformativo";
 
 
 function Skincare() {
 
     const { respuestasCompletas } = useLocalSearchParams();
-    console.log(respuestasCompletas);
+    console.log(respuestasCompletas, '- 1');
 
 
     return (
@@ -67,14 +68,14 @@ function Skincare() {
 
         <View
         style={{
-            marginTop: 50,
+            marginTop: 150,
            
         }}
         >
-            <Button
-                title="Analizar"
-                onPress={() => alert("Comenzar")}
-                color="#FF5733"
+            <ButtonTabInformativo
+                text="Subir foto"
+                color="red"
+                goPage={() => console.log('Subir foto')}
             />
                 </View>
         

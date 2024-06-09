@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Button, ScrollView, TextInput } from "react-native";
 import { Link, Stack, router } from "expo-router";
-
+import ButtonTabInformativo from '../componentes/ButtonTabInformativo'
 const preguntas = [
   "¿Cuál es tu género?",
   "¿Cuál es tu edad?",
@@ -20,10 +20,11 @@ export default function SkinCarePreguntas() {
   const [respuestas, setRespuestas] = useState([]);
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [respuestasCompletas, setRespuestasCompletas] = useState([]);
+  const num = 1;
 
   const goPageAnalytic = () => {
     console.log(respuestasCompletas);
-    router.navigate("/screens/skincare", { respuestasCompletas :   respuestasCompletas });  
+    router.navigate({pathname: '/screens/skincare', params: {respuestasCompletas: respuestasCompletas}});  
   };
 
   console.log(respuestas);
@@ -66,7 +67,7 @@ export default function SkinCarePreguntas() {
             {preguntas[preguntaActual]}
           </Text>
           <TextInput
-            style={{ height: 40, margin: 12, padding: 10 , width:'50%',fontStyle:'normal', fontSize: 20, textAlign: 'center', color: 'red', borderWidth: 1, borderColor: 'black'}}
+            style={{ height: 40, margin: 12, padding: 0 , width:'80%',fontStyle:'normal', fontSize: 20, textAlign: 'center', color: 'red', borderWidth: 1, borderColor: 'grey', borderRadius: 10, backgroundColor: 'white'}}
             placeholder="Escribe tu respuesta"
             onChangeText={ (text) => setRespuestas(text)}
               value={respuestas}
@@ -102,7 +103,7 @@ export default function SkinCarePreguntas() {
               marginBottom: 20,
             }}
           >
-            ¡Gracias por responder las preguntas! Ahora puedes ver los resultados.
+            ¡Gracias por responder las preguntas! Ahora pasaremos al analisis facil.
           </Text>
 
       <Button title="Ver resultados"
@@ -127,6 +128,7 @@ export default function SkinCarePreguntas() {
         alignContent: "center",
         width: "100%",
         //  height: '100%',
+        marginTop: 20,
       }}
     >
       <Stack.Screen
@@ -148,20 +150,34 @@ export default function SkinCarePreguntas() {
           textAlign: "center",
           fontFamily: "sans-serif", // robo mono
           fontWeight: "400",
-          width: "80%",
+          width: "90%",
           marginBottom: 20,
           marginTop: 40,
           color: 'black',
         }}
       >
+        NO ES NECESARIA {'\n'} PERO AYUDA A PERSONALIZAR TU RUTINA : {'\n'}
         Responde de la mejor manera posible las siguientes preguntas para poder
-        recomendarte los productos de skin care que mejor se adapten a tus
-        necesidades.
+        personalizar aun mas tu rutina de skin care, y obtener mejores resultados.
       </Text>
 
       {preguntasLayout()}
 
+      <View
+        style={{
+          marginTop: 120,
 
+
+        }}
+      >
+
+        <ButtonTabInformativo
+          text="Omitir preguntas, ir al analisis facial  con IA"
+          fc='/screens/skincare'
+          color="grey"
+        />
+
+      </View>
 
 
 
