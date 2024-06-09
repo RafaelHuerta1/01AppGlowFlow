@@ -3,86 +3,58 @@ import { View, Text, Button, ScrollView, TextInput, TouchableOpacity } from "rea
 import { Link, Stack, router } from "expo-router";
 import ButtonTabInformativo from '../componentes/ButtonTabInformativo'
 
-const preguntas = [
-  '¿Cual es su nombre completo?',
-  "¿Cuál es tu género?",
-  "¿Cuál es tu edad?",
-  "¿Tienes sensibilidad a algún producto o ingrediente específico?",
-  "¿Con qué frecuencia y cuánto tiempo estás expuesto al sol?",
-  "¿Usas protector solar regularmente?",
-  "¿Qué tipo de dieta sigues?",
-  "¿Con qué frecuencia haces ejercicio?",
-  "¿Cuántas horas duermes al día?",
-  "¿Fumas o consumes alcohol?",
-  "¿Tienes alguna preferencia en los productos de cuidado facial?",
-  "¿Cuál es tu presupuesto para skin care?",
-];
+const preguntas = {
+  edad: "¿Cuál es tu rango de edad?",
+  genero: "¿Cuál es tu género?",
 
-
-/***
- * POSIBLES RESPUESTAS:
- * ¿Cuál es tu género?
-
-Masculino
-Femenino
-Prefiero no decirlo
-¿Cuál es tu edad?
-
-Menor de 20 años
-20-40 años
-Mayor de 40 años
-¿Tienes sensibilidad a algún producto o ingrediente específico?
-
-Sí
-No
-No estoy seguro/a
-¿Con qué frecuencia y cuánto tiempo estás expuesto al sol?
-
-Raramente (Menos de 1 hora al día)
-Moderadamente (1-3 horas al día)
-Frecuentemente (Más de 3 horas al día)
-¿Usas protector solar regularmente?
-
-Sí
-No
-A veces
-¿Qué tipo de dieta sigues?
-
-Equilibrada
-Vegetariana/Vegana
-Alta en carbohidratos o grasas
-¿Con qué frecuencia haces ejercicio?
-
-Diariamente
-Varias veces a la semana
-Raramente o nunca
-¿Cuántas horas duermes al día?
-
-Menos de 6 horas
-6-8 horas
-Más de 8 horas
-¿Fumas o consumes alcohol?
-
-Ambos
-Solo uno de ellos
-Ninguno
-¿Tienes alguna preferencia en los productos de cuidado facial?
-
-Productos naturales/orgánicos
-Productos de alta gama o de marca
-No tengo preferencias específicas
-¿Cuál es tu presupuesto para skin care?
-
-Económico bajo: Menos de $20 mensuales
-Económico medio: $20-$50 mensuales
-Económico alto: Más de $50 mensuales
- */
-
-
-
-const createBtnOpcion = () => {
+  sensibilidadProducto: "¿Tienes la piel sensible?",
+  exposicionSol: "¿Cuánto tiempo pasas al sol?",
+  usoProtectorSolar: "¿Usas protector solar?",
+  tipoDieta: "¿Qué tipo de dieta sigues?",
+  frecuenciaEjercicio: "¿Con qué frecuencia haces ejercicio?",
+  horasSueno: "¿Cuántas horas duermes al día?",
+  consumoTabacoAlcohol: "¿Consumes tabaco o alcohol?",
+  preferenciaProductosCuidadoFacial: "¿Qué tipo de productos prefieres para el cuidado facial?",
+  presupuestoSkinCare: "¿Cuál es tu presupuesto mensual para productos de cuidado facial?"
 
 }
+
+
+const encuestaRespuestas = {
+  genero: ["Masculino", "Femenino", "Prefiero no decirlo"],
+  edad: ["Menor de 20 años", "20-40 años", "Mayor de 40 años"],
+  sensibilidadProducto: ["Sí", "No", "No estoy seguro/a"],
+  exposicionSol: [
+    "Raramente (Menos de 1 hora al día)",
+    "Moderadamente (1-3 horas al día)",
+    "Frecuentemente (Más de 3 horas al día)"
+  ],
+  usoProtectorSolar: ["Sí", "No", "A veces"],
+  tipoDieta: [
+    "Equilibrada",
+    "Vegetariana/Vegana",
+    "Alta en carbohidratos o grasas"
+  ],
+  frecuenciaEjercicio: [
+    "Diariamente",
+    "Varias veces a la semana",
+    "Raramente o nunca"
+  ],
+  horasSueno: ["Menos de 6 horas", "6-8 horas", "Más de 8 horas"],
+  consumoTabacoAlcohol: ["Ambos", "Solo uno de ellos", "Ninguno"],
+  preferenciaProductosCuidadoFacial: [
+    "Productos naturales/orgánicos",
+    "Productos de alta gama o de marca",
+    "No tengo preferencias específicas"
+  ],
+  presupuestoSkinCare: [
+    "Económico bajo: Menos de $20 mensuales",
+    "Económico medio: $20-$50 mensuales",
+    "Económico alto: Más de $50 mensuales"
+  ]
+};
+
+
 
 
 
@@ -106,6 +78,47 @@ export default function SkinCarePreguntas() {
     router.navigate({pathname: '/screens/skincare', params: {respuestasCompletas: respuestasCompletas}});  
   };
 
+  const opcionesMultiples = () => {
+    return (
+      <View>
+        {encuestaRespuestas[Object.keys(preguntas)[preguntaActual]].map(
+          (respuesta, index) => {
+            return (
+              <TouchableOpacity
+              
+                key={index}
+                onPress={() => {
+                  setRespuestas([...respuestas, respuesta]);
+                }}
+                style={{
+                  backgroundColor: respuestas.includes(respuesta)
+                    ? "blue"
+                    : "white",
+                  width: "90%",
+                  padding: 10,
+                  margin: 5,
+                  borderRadius: 10,
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    
+                    color: respuestas.includes(respuesta) ? "white" : "black",
+                    fontSize: 16,
+                    textAlign: "center",
+                  }}
+                >
+                  {respuesta}
+                </Text>
+              </TouchableOpacity>
+            );
+          }
+        )}
+      </View>
+    );
+  }
+
   console.log(respuestas);
   console.log(preguntaActual);
   console.log(respuestasCompletas);
@@ -120,7 +133,7 @@ export default function SkinCarePreguntas() {
 
 
   const preguntasLayout = () => {
-    if (preguntaActual < preguntas.length) {
+    if (preguntaActual < Object.keys(preguntas).length) {
       return (
         <View
           style={{
@@ -143,29 +156,24 @@ export default function SkinCarePreguntas() {
               width: "90%",
             }}
           >
-            {preguntas[preguntaActual]}
+            {preguntas[Object.keys(preguntas)[preguntaActual]]}
           </Text>
-          {
-            preguntaActual === 0 ? (
-              <TextInput
-            style={{ height: 40, margin: 12, padding: 0 , width:'80%',fontStyle:'normal', fontSize: 20, textAlign: 'center', color: 'red', borderWidth: 1, borderColor: 'grey', borderRadius: 10, backgroundColor: 'white'}}
-            placeholder="Escribe tu respuesta"
-            onChangeText={ (text) => setRespuestas(text)}
-              value={respuestas}
-          />
-            ) : 
-           
-            createBtnOpcion()
-              
+            
+            {opcionesMultiples()}
+
+            
+          <Button
+                title="Siguiente"
+                onPress={cambiarPregunta}
+              />
 
 
-          }
-          <Button title="Siguiente" 
-          onPress={cambiarPregunta}
-          />
+          
         </View>
       );
-    } else {
+    }
+   
+    else {
       return (
           
         <View
