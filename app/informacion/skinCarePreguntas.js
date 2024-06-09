@@ -80,7 +80,12 @@ export default function SkinCarePreguntas() {
 
   const opcionesMultiples = () => {
     return (
-      <View>
+      <View
+        style={{
+          flexDirection: "column",
+
+        }}
+      >
         {encuestaRespuestas[Object.keys(preguntas)[preguntaActual]].map(
           (respuesta, index) => {
             return (
@@ -94,7 +99,7 @@ export default function SkinCarePreguntas() {
                   backgroundColor: respuestas.includes(respuesta)
                     ? "blue"
                     : "white",
-                  width: "90%",
+                  width: 200,
                   padding: 10,
                   margin: 5,
                   borderRadius: 10,
@@ -184,7 +189,7 @@ export default function SkinCarePreguntas() {
             alignSelf: "center",
             width: "100%",
             height: 'auto',
-            marginTop: 333,
+            marginTop: 303,
           }}
         >
            
@@ -223,7 +228,7 @@ export default function SkinCarePreguntas() {
         alignContent: "center",
         width: "100%",
         //  height: '100%',
-        marginTop: 20,
+        marginTop: 10,
       }}
     >
       <Stack.Screen
